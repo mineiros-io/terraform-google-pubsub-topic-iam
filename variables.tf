@@ -29,6 +29,11 @@ variable "members" {
   type        = set(string)
   description = "(Optional) Identities that will be granted the privilege in role. Each entry can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
   default     = []
+
+  validation {
+    condition     = alltrue([for member in var.members : can(regex("^(allUsers|allAuthenticatedUsers|(user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer):)$", member))])
+    error_message = "Each member in 'var.members' can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
+  }
 }
 
 variable "policy_bindings" {
