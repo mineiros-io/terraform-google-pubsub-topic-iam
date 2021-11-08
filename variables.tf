@@ -55,12 +55,12 @@ variable "authoritative" {
 
 variable "module_enabled" {
   type        = bool
-  description = "(Optional) Whether to create resources within the module or not. Default is 'true'."
+  description = "(Optional) Whether to create resources within the module or not."
   default     = true
 }
 
 variable "module_depends_on" {
   type        = any
-  description = "(Optional) A list of external resources the module depends_on. Default is '[]'."
+  description = "(Optional) A list of external resources the module depends_on."
   default     = []
 }
