@@ -8,7 +8,7 @@
 
 # terraform-google-pubsub-topic-iam
 
-A [Terraform](https://www.terraform.io) module to create a [Google Pubsub Topic IAM](https://cloud.google.com/pubsub/docs/access-control) on [Google Cloud Services (GCP)](https://cloud.google.com/).
+A [Terraform](https://www.terraform.io) module to manage [IAM](https://cloud.google.com/pubsub/docs/access-control) for a [Google Pubsub Topic](https://cloud.google.com/pubsub) on [Google Cloud Services (GCP)](https://cloud.google.com/).
 
 **_This module supports Terraform version 1
 and is compatible with the Terraform Google Provider version 4._**
