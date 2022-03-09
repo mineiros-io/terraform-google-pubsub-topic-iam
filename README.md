@@ -49,7 +49,7 @@ Most basic usage just setting required arguments:
 
 ```hcl
 module "terraform-google-pubsub-topic-iam" {
-  source = "github.com/mineiros-io/terraform-google-pubsub-topic-iam?ref=v0.1.0"
+  source = "github.com/mineiros-io/terraform-google-pubsub-topic-iam?ref=v0.0.3"
 
   topic   = "example-topic"
   role    = "roles/editor"
