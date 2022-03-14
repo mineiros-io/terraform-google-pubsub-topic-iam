@@ -65,7 +65,7 @@ section {
 
       ```hcl
       module "terraform-google-pubsub-topic-iam" {
-        source = "github.com/mineiros-io/terraform-google-pubsub-topic-iam?ref=v0.0.3"
+        source = "github.com/mineiros-io/terraform-google-pubsub-topic-iam?ref=v0.0.4"
 
         topic   = "example-topic"
         role    = "roles/editor"
