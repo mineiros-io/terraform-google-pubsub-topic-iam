@@ -31,7 +31,7 @@ variable "members" {
   default     = []
 
   validation {
-    condition     = alltrue([for member in var.members : can(regex("^(allUsers|allAuthenticatedUsers|(user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer):)$", member))])
+    condition     = alltrue([for member in var.members : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer):.*)$", member))])
     error_message = "Each member in 'var.members' can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
   }
 }
