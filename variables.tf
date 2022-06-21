@@ -42,8 +42,8 @@ variable "computed_members_map" {
   default     = {}
 
   validation {
-    condition     = alltrue([for key, value in var.computed_members_map : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer|computed):.*)$", value))])
-    error_message = "Each member can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid', 'computed:*'."
+    condition     = alltrue([for key, value in var.computed_members_map : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer):.*)$", value))])
+    error_message = "Each member can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
   }
 }
 
