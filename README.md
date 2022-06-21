@@ -79,8 +79,23 @@ See [variables.tf] and [examples/] for details and use-cases.
   - `projectOwner:projectid`: Owners of the given project. For example, `projectOwner:my-example-project`
   - `projectEditor:projectid`: Editors of the given project. For example, `projectEditor:my-example-project`
   - `projectViewer:projectid`: Viewers of the given project. For example, `projectViewer:my-example-project`
+  - `computed:{identifier}`: An existing key from var.computed_members_map.
 
   Default is `[]`.
+
+- [**`computed_members_map`**](#var-computed_members_map): *(Optional `map(string)`)*<a name="var-computed_members_map"></a>
+
+  A map of members to replace in `var.members` or in members of `policy_bindings` to handle terraform computed values.
+
+  Default is `{}`.
+
+  Example:
+
+  ```hcl
+  computed_members_map = {
+    myserviceaccount = "serviceAccount:example@mail.com"
+  }
+  ```
 
 - [**`role`**](#var-role): *(Optional `string`)*<a name="var-role"></a>
 

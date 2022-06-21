@@ -27,12 +27,23 @@ variable "project" {
 
 variable "members" {
   type        = set(string)
-  description = "(Optional) Identities that will be granted the privilege in role. Each entry can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
+  description = "(Optional) Identities that will be granted the privilege in role. Each entry can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid', 'computed:*'."
   default     = []
 
   validation {
-    condition     = alltrue([for member in var.members : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer):.*)$", member))])
-    error_message = "Each member in 'var.members' can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid'."
+    condition     = alltrue([for member in var.members : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer|computed):.*)$", member))])
+    error_message = "Each member in 'var.members' can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid', 'computed:*'."
+  }
+}
+
+variable "computed_members_map" {
+  type        = map(string)
+  description = "(Optional) A map of members to replace in 'var.members' or in members of 'policy_bindings' to handle terraform computed values."
+  default     = {}
+
+  validation {
+    condition     = alltrue([for key, value in var.computed_members_map : can(regex("^(?:allUsers|allAuthenticatedUsers|(?:user|serviceAccount|group|domain|projectOwner|projectEditor|projectViewer|computed):.*)$", value))])
+    error_message = "Each member can have one of the following values: 'allUsers', 'allAuthenticatedUsers', 'user:{emailid}', 'serviceAccount:{emailid}', 'group:{emailid}', 'domain:{domain}', 'projectOwner:projectid', 'projectEditor:projectid', 'projectViewer:projectid', 'computed:*'."
   }
 }
 
