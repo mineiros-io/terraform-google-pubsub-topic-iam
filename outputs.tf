@@ -7,9 +7,9 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 locals {
-  binding = try(google_pubsub_topic_iam_binding.binding[0], null)
-  member  = try(google_pubsub_topic_iam_member.member, null)
-  policy  = try(google_pubsub_topic_iam_policy.policy[0], null)
+  binding = one(google_pubsub_topic_iam_binding.binding)
+  member  = google_pubsub_topic_iam_member.member
+  policy  = one(google_pubsub_topic_iam_policy.policy)
 
   iam_output = [local.binding, local.member, local.policy]
 

@@ -106,6 +106,20 @@ section {
           - `projectOwner:projectid`: Owners of the given project. For example, `projectOwner:my-example-project`
           - `projectEditor:projectid`: Editors of the given project. For example, `projectEditor:my-example-project`
           - `projectViewer:projectid`: Viewers of the given project. For example, `projectViewer:my-example-project`
+          - `computed:{identifier}`: An existing key from var.computed_members_map.
+        END
+      }
+
+      variable "computed_members_map" {
+        type           = map(string)
+        default        = {}
+        description    = <<-END
+          A map of members to replace in `var.members` or in members of `policy_bindings` to handle terraform computed values.
+        END
+        readme_example = <<-END
+          computed_members_map = {
+            myserviceaccount = "serviceAccount:example@mail.com"
+          }
         END
       }
 
